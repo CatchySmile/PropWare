@@ -7,10 +7,12 @@ I  am going to likely add alot more feutures soon.
 You can skid my shit code idc :)
 
 ## Usage 
-- Get a lua executor. I recommend this one : https://www.unknowncheats.me/forum/downloads.php?do=file&id=19002
-- 
-After downloading external.dll from above inject it (32bit) into gmod and make a folder called "external" in your documents folder and put the script in there, then via console type "external PropWare_0.37.lua"
-Or execute it using your own lua executor
+(Optional if you already have a lua executor)
+- Get a lua executor. I recommend this one : https://www.unknowncheats.me/forum/downloads.php?do=file&id=19002 
+- Inject the dll into Gmod (Recommended 32bit!)
+- Make a folder called "external" in your documents folder
+- Put the script in said folder
+- In console type "external PropWare_0.37.lua"
 
 Using it is simple, Just type in a custom prop model (find one by right clicking any prop in the Q-Menu then clicking copy) and just paste it in the text box and click spawn. or just use a pre-selected prop and click spawn
 
