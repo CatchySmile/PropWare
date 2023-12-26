@@ -18,8 +18,9 @@ You can skid my shit code idc :)
 Using it is simple, Just type in a custom prop model (find one by right clicking any prop in the Q-Menu then clicking copy) and just paste it in the text box and then click spawn, or you can use a pre-selected prop.
 
 ## Features
+- Custom prop/entity spawning
 - Custom delay between prop spawns
 - Custom amount of any prop to spawn
 - Choose from the pre-selected props if your lazy
-- Spawn all the pre-selected props for fun
+- Spawn all the pre-selected props in one click
 - Clear all props
