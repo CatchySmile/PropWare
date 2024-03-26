@@ -12,7 +12,7 @@ You can skid my shit code idc :)
 - Inject the dll into Gmod (Recommended 32bit!)
 - Make a folder called "external" in your documents folder
 - Put the script in said folder
-- In console type "external PropWare_0.37.lua"
+- In console type "external PropWare_0.40.lua"
 
 ## Usage
 Using it is simple, Just type in a custom prop model (find one by right clicking any prop in the Q-Menu then clicking copy) and just paste it in the text box and then click spawn, or you can use a pre-selected prop.
