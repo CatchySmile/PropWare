@@ -6,6 +6,8 @@ Preview : https://i.ibb.co/2nxLznz/image.png
 I  am going to likely add alot more feutures soon.
 You can skid my shit code idc :)
 
+**Looking into re-making alot of the script and adding a darkRP Bypass of sorts**
+
 ## Executing
 (Optional if you already have a lua executor)
 - Get a lua executor. I recommend this one : https://www.unknowncheats.me/forum/downloads.php?do=file&id=19002 
