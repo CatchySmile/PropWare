@@ -1,4 +1,4 @@
-# PropWare 0.37
+# PropWare 0.40
 [Works on 32bit and 64bit gmod!]
 
 Preview : https://i.ibb.co/2nxLznz/image.png
@@ -24,3 +24,10 @@ Using it is simple, Just type in a custom prop model (find one by right clicking
 - Choose from the pre-selected props if your lazy
 - Spawn all the pre-selected props in one click
 - Clear all props
+- Esp
+- Bhop
+- Fullbright
+- 3rd Person
+- Fov Changer
+- Shit Anti-aim (Not silent yet, stay tuned)
+- Custom gui key
