@@ -1,5 +1,6 @@
 # PropWare 0.40
 [Works on 32bit and 64bit gmod!]
+[Might work on linux...]
 
 Preview : https://i.ibb.co/2nxLznz/image.png
 ## Notice
