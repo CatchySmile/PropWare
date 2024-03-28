@@ -28,13 +28,13 @@ Using it is simple, Just type in a custom prop model (find one by right clicking
 - Choose from the pre-selected props if your lazy
 - Spawn all the pre-selected props in one click
 - Clear all props
+- Prop Chams
+- Prop pvp/fling detector
   
 **Non Prop related stuff**
 - Esp
 - Bhop
 - Freecam
-- Prop Chams
-- Prop pvp/fling detector
 - Fullbright
 - Fov Changer
 - Shit Anti-aim (Not silent yet, stay tuned)
