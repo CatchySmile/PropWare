@@ -12,7 +12,7 @@ You can skid my shit code idc :)
 ## Executing
 (Optional if you already have a lua executor)
 - Get a lua executor. I recommend this one : https://www.unknowncheats.me/forum/downloads.php?do=file&id=19002 
-- Inject the dll into Gmod (Recommended 32bit!)
+- Inject the dll into Gmod (The one provided is only for 32bit!)
 - Make a folder called "external" in your documents folder
 - Put the script in said folder
 - In console type "external PropWare_0.41.lua"
