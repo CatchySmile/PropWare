@@ -1,4 +1,4 @@
-# PropWare 0.40
+# PropWare 0.41
 [Works on 32bit and 64bit gmod!]
 
 - Preview : [https://i.ibb.co/2nxLznz/image.png](https://i.ibb.co/02hNtgV/image.png)
@@ -15,7 +15,7 @@ You can skid my shit code idc :)
 - Inject the dll into Gmod (Recommended 32bit!)
 - Make a folder called "external" in your documents folder
 - Put the script in said folder
-- In console type "external PropWare_0.40.lua"
+- In console type "external PropWare_0.41.lua"
 
 ## Usage
 Using it is simple, Just type in a custom prop model (find one by right clicking any prop in the Q-Menu then clicking copy) and just paste it in the text box and then click spawn, or you can use a pre-selected prop.
@@ -32,8 +32,10 @@ Using it is simple, Just type in a custom prop model (find one by right clicking
 **Non Prop related stuff**
 - Esp
 - Bhop
+- Freecam
+- Prop Chams
+- Prop pvp/fling detector
 - Fullbright
-- 3rd Person
 - Fov Changer
 - Shit Anti-aim (Not silent yet, stay tuned)
 - Custom gui key
