@@ -1,7 +1,7 @@
 # PropWare 0.41
 [Works on 32bit and 64bit gmod!]
 
-- Preview : [[https://i.ibb.co/2nxLznz/image.png](https://i.ibb.co/sPLLbn8/preview.png)
+- Preview : [https://i.ibb.co/2nxLznz/image.png](https://i.ibb.co/sPLLbn8/preview.png)
 - Discord : [https://discord.gg/YS2FeWvQ5r](https://discord.gg/YS2FeWvQ5r)
 ## Notice
 I  am going to likely add alot more feutures soon.
