@@ -1,33 +1,79 @@
-local frame = vgui.Create("DFrame")
-frame:SetSize(400, 260)
-frame:SetTitle("PropWare - v0.41 Release")
-frame:SetVisible(true)
-frame:Center()
+-- fov changer doesnt work and im probably not gunna fix it for a while
 
-frame.Paint = function(self, w, h)
-    draw.RoundedBox(8, 0, 0, w, h, Color(24, 24, 24, 200))
+notification.AddLegacy( "Press `HOME` to toggle menu.", NOTIFY_GENERIC, 3.5 )
+surface.PlaySound( "buttons/button15.wav" )
+Msg( "PropWare Load Successful\n" )
+local blur = Material("pp/blurscreen")
+local function DrawBlur(panel, amount)
+    local x, y = panel:LocalToScreen(0, 0)
+    surface.SetDrawColor(255, 255, 255)
+    surface.SetMaterial(blur)
 
-    surface.SetDrawColor(Color(0, 0, 0, 255))
-    surface.DrawOutlinedRect(0, 0, w, h)
+    for i = 1, 3 do
+        blur:SetFloat("$blur", (i / 1) * (amount or 6))
+        blur:Recompute()
 
-    local radius = 5
-    local corners = {
-        {x = 0, y = 0},
-        {x = w, y = 0},
-        {x = w, y = h},
-        {x = 0, y = h}
-    }
-
-    for _, corner in pairs(corners) do
-        draw.RoundedBox(radius, corner.x - radius, corner.y - radius, radius * 2, radius * 2, Color(0, 0, 0, 255))
+        render.UpdateScreenEffectTexture()
+        surface.DrawTexturedRect(-x, -y, ScrW(), ScrH())
     end
 end
 
+local darkenPanel = vgui.Create("DPanel")
+darkenPanel:SetSize(ScrW(), ScrH())
+darkenPanel:SetPos(0, 0)
+darkenPanel.Paint = function(self, w, h)
+    surface.SetDrawColor(0, 0, 0, 200) 
+    surface.DrawRect(0, 0, w, h)
+end
+darkenPanel:SetVisible(false)
+
+local frame = vgui.Create("DFrame")
+frame:SetSize(400, 200)
+frame:SetTitle("PropWare - v0.43 Pre release")
+frame:SetVisible(true)
+frame:Center()
+frame:ShowCloseButton(false)
+frame:SetPos(100, 50)
+
+frame.Paint = function(self, w, h)
+    draw.RoundedBox(8, 0, 0, w, h, Color(24, 24, 24, 200))
+    surface.SetDrawColor(Color(0, 0, 0, 255))
+end
 
 
--- If you remove my credits ill be oh so sad
+local frame2 = vgui.Create("DFrame")
+frame2:SetSize(300, 110)
+frame2:SetTitle("PropWare - v0.43 Pre release")
+frame2:SetVisible(true)
+frame2:Center()
+frame2:ShowCloseButton(false)
+frame2:SetPos(600, 50)
+
+frame2.Paint = function(self, w, h)
+    draw.RoundedBox(8, 0, 0, w, h, Color(24, 24, 24, 200))
+
+    surface.SetDrawColor(Color(0, 0, 0, 255))
+end
+
+local function ToggleDarkenPanel(visible)
+    darkenPanel:SetVisible(visible)
+end
+
+hook.Add("HUDPaint", "DrawBothFrames", function()
+    if frame:IsVisible() or frame2:IsVisible() then
+        DrawBlur(darkenPanel, 3) 
+        darkenPanel:SetVisible(true)
+    else
+        darkenPanel:SetVisible(false)
+    end
+end)
+
+
+
+-- If you remove my credits your goofy
+
 local labelModel = vgui.Create("DLabel", frame)
-labelModel:SetPos(327, 240)
+labelModel:SetPos(327, 180)
 labelModel:SetSize(200, 20)
 labelModel:SetText("Made by 4koy")
 labelModel:SetTextColor(Color(255, 255, 255))
@@ -309,8 +355,8 @@ end)
 
 
 
-local espCheckbox = vgui.Create("DCheckBoxLabel", frame)
-espCheckbox:SetPos(90, 167)
+local espCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+espCheckbox:SetPos(90, 30)
 espCheckbox:SetSize(200, 20)
 espCheckbox:SetText("Esp")
 espCheckbox:SetValue(espEnabled)
@@ -352,8 +398,8 @@ end
 
 CreateClientConVar("spin_enabled", 0, true, false)
 
-local spinCheckbox = vgui.Create("DCheckBoxLabel", frame)
-spinCheckbox:SetPos(10, 207)
+local spinCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+spinCheckbox:SetPos(10, 70)
 spinCheckbox:SetSize(200, 20)
 spinCheckbox:SetText("Anti-Aim")
 spinCheckbox:SetValue(GetConVar("spin_enabled"):GetBool())
@@ -404,8 +450,8 @@ end
 hook.Add("PostRender", "fullbright", EndOfLightingMod)
 hook.Add("PreDrawHUD", "fullbright", EndOfLightingMod)
 
-local lightingModeCheckbox = vgui.Create("DCheckBoxLabel", frame)
-lightingModeCheckbox:SetPos(10, 167)
+local lightingModeCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+lightingModeCheckbox:SetPos(10, 30)
 lightingModeCheckbox:SetSize(200, 20)
 lightingModeCheckbox:SetText("Fullbright")
 lightingModeCheckbox:SetValue(lightingModeEnabled)
@@ -451,8 +497,8 @@ hook.Add("CalcView", "ChangeFOV", CalcFOV)
 
 
 
-local freecamCheckbox = vgui.Create("DCheckBoxLabel", frame)
-freecamCheckbox:SetPos(90, 207)
+local freecamCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+freecamCheckbox:SetPos(90, 70)
 freecamCheckbox:SetSize(200, 20)
 freecamCheckbox:SetText("Freecam")
 freecamCheckbox:SetValue(false)
@@ -558,9 +604,9 @@ local function SetPropEspColor(colorIndex)
     selectedColorIndex = colorIndex
 end
 
-local colorSlider = vgui.Create("DNumSlider", frame)
-colorSlider:SetPos(105, 183) 
-colorSlider:SetSize(180, 20) 
+local colorSlider = vgui.Create("DNumSlider", frame2)
+colorSlider:SetPos(193, 27) 
+colorSlider:SetSize(150, 20) 
 colorSlider:SetText("")
 colorSlider:SetMin(1)
 colorSlider:SetMax(#colorOptions)
@@ -614,7 +660,7 @@ local function DrawPropESP()
             render.DrawQuad(corners[7], corners[8], corners[4], corners[3], colorOptions[selectedColorIndex])
             render.DrawQuad(corners[5], corners[8], corners[7], corners[4], colorOptions[selectedColorIndex])
             render.DrawQuad(corners[6], corners[7], corners[3], corners[2], colorOptions[selectedColorIndex])
-            
+            -- kms
             render.SetMaterial(Material("models/wireframe")) 
             for i = 1, 4 do
                 render.DrawLine(corners[i], corners[i % 4 + 1], colorOptions[selectedColorIndex], true)
@@ -631,10 +677,12 @@ end
 
 hook.Add("PostDrawOpaqueRenderables", "DrawPropESP", DrawPropESP)
 
+local chamsco = vgui.Create( "DLabel", frame2 )
+chamsco:SetPos( 263, 10 )
+chamsco:SetText( "Color" )
 
-
-local propEspCheckbox = vgui.Create("DCheckBoxLabel", frame)
-propEspCheckbox:SetPos(170, 167)
+local propEspCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+propEspCheckbox:SetPos(170, 30)
 propEspCheckbox:SetSize(200, 20)
 propEspCheckbox:SetText("Prop Chams")
 propEspCheckbox:SetValue(propEspEnabled)
@@ -648,8 +696,8 @@ end
 
 CreateClientConVar("BhopVar", 0, true, false)
 
-local bunnyhopCheckbox = vgui.Create("DCheckBoxLabel", frame)
-bunnyhopCheckbox:SetPos(90, 187)
+local bunnyhopCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+bunnyhopCheckbox:SetPos(90, 50)
 bunnyhopCheckbox:SetSize(200, 20)
 bunnyhopCheckbox:SetText("Bhop")
 bunnyhopCheckbox:SetValue(GetConVar("BhopVar"):GetBool())
@@ -707,14 +755,14 @@ local toggleKeys = {
 }
 
 local labelToggleGUI = vgui.Create("DLabel", frame)
-labelToggleGUI:SetPos(75, 230)
+labelToggleGUI:SetPos(75, 170)
 labelToggleGUI:SetSize(370, 20)
 labelToggleGUI:SetText("GUI Key")
 labelToggleGUI:SetTextColor(Color(255, 255, 255)) 
 
 
 local toggleKeyComboBox = vgui.Create("DComboBox", frame)
-toggleKeyComboBox:SetPos(10, 230)
+toggleKeyComboBox:SetPos(10, 170)
 toggleKeyComboBox:SetSize(60, 20)
 toggleKeyComboBox:SetText("Home")
 
@@ -730,8 +778,8 @@ end
 
 
 
-local DetectPropFlingCheckbox = vgui.Create("DCheckBoxLabel", frame)
-DetectPropFlingCheckbox:SetPos(10, 187)
+local DetectPropFlingCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+DetectPropFlingCheckbox:SetPos(10, 50)
 DetectPropFlingCheckbox:SetSize(200, 20)
 DetectPropFlingCheckbox:SetText("Fling Alert")
 DetectPropFlingCheckbox:SetValue(0) 
@@ -779,19 +827,144 @@ hook.Add("Think", "DetectPropFling", function()
 end)
 
 
-local function ToggleGUI()
-    if IsValid(frame) then
-        frame:SetVisible(not frame:IsVisible())
+local AimShitCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+AimShitCheckbox:SetPos(170, 70)
+AimShitCheckbox:SetSize(200, 20)
+AimShitCheckbox:SetText("Aimbot")
+AimShitCheckbox:SetValue(0) 
+AimShitCheckbox:SizeToContents()
+
+local aimingPlayer = nil
+local interpolationSpeed = 20 
+
+local function AimShitOne()
+    if not input.IsMouseDown(MOUSE_5) then
+        aimingPlayer = nil
+        return
+    end 
+
+    local localPlayer = LocalPlayer()
+    
+    if aimingPlayer and not aimingPlayer:Alive() then
+        aimingPlayer = nil
+    end
+
+    if not aimingPlayer then
+        local viewDir = localPlayer:GetAimVector()
+        local nearestHeadPos
+        local nearestDistSq = math.huge
+
+        for _, ply in ipairs(player.GetAll()) do
+            if ply ~= localPlayer and ply:Alive() then
+                local headBone = ply:LookupBone("ValveBiped.Bip01_Head1")
+                if headBone then
+                    local headPos = ply:GetBonePosition(headBone)
+                    local distSq = localPlayer:GetPos():DistToSqr(headPos)
+                    if distSq < nearestDistSq then
+                        local headDir = (headPos - EyePos()):GetNormalized()
+                        local angleDiff = math.deg(math.acos(viewDir:Dot(headDir)))
+                        if angleDiff <= 20 then
+                            nearestDistSq = distSq
+                            nearestHeadPos = headPos
+                            aimingPlayer = ply
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    if aimingPlayer then
+        local headPos = aimingPlayer:GetBonePosition(aimingPlayer:LookupBone("ValveBiped.Bip01_Head1"))
+        local lookDir = (headPos - EyePos()):GetNormalized()
+        local newAngles = lookDir:Angle()
+        
+        LocalPlayer():SetEyeAngles(LerpAngle(FrameTime() * interpolationSpeed, localPlayer:EyeAngles(), newAngles))
+    end
+end
+
+local function CreateAimShitSlider()
+    local smootht = vgui.Create( "DLabel", frame2 )
+    smootht:SetPos( 260, 57 )
+    smootht:SetText( "Smooth" )
+
+
+    local slider2 = vgui.Create("DNumSlider", frame2)
+    slider2:SetPos(193, 70)
+    slider2:SetSize(150, 20)
+    slider2:SetMin(0)
+    slider2:SetMax(70)
+    slider2:SetDecimals(1)
+    slider2:SetValue(interpolationSpeed)
+    slider2.OnValueChanged = function(self, value)
+        interpolationSpeed = value
+    end
+end
+CreateAimShitSlider()
+hook.Add("InitPostEntity", "CreateInterpolationSpeedSlider", CreateAimShitSlider)
+
+
+
+AimShitCheckbox.OnChange = function(panel, isChecked)
+    if isChecked then
+        hook.Add("Think", "AimShitThink", AimShitOne)
+        notification.AddLegacy( "Hold `Mouse_5` to Activate", NOTIFY_GENERIC, 2.75 )
     else
-        print("You must re-run the script because you hit the X")
+        hook.Remove("Think", "AimShitThink")
     end
 end
 
 
 
-frame.OnClose = function()
+local TriggerBotCheckbox = vgui.Create("DCheckBoxLabel", frame2)
+TriggerBotCheckbox:SetPos(170, 50)
+TriggerBotCheckbox:SetSize(200, 20)
+TriggerBotCheckbox:SetText("TriggerBot")
+TriggerBotCheckbox:SetValue(0)
+TriggerBotCheckbox:SizeToContents()
+
+local function TriggerBot()
+    if TriggerBotCheckbox:GetChecked() then
+        local ply = LocalPlayer()
+        local trace = ply:GetEyeTrace()
+        
+        if trace.Entity:IsPlayer() and trace.Entity:Alive() then
+            ply:ConCommand("+attack")
+            timer.Simple(0.1, function() ply:ConCommand("-attack") end) 
+        end
+    end
+end
+
+hook.Add("Think", "TriggerBot", TriggerBot)
+
+TriggerBotCheckbox.OnChange = function(panel, isChecked)
+    if isChecked then
+        hook.Add("Think", "TriggerBot", TriggerBot)
+    else
+        hook.Remove("Think", "TriggerBot")
+    end
+end
+
+
+
+
+local function ToggleGUI2()
+    if IsValid(frame2) then
+        frame2:SetVisible(not frame2:IsVisible())
+    end
+end
+
+local function ToggleGUI()
+    if IsValid(frame) then
+        frame:SetVisible(not frame:IsVisible())
+    end
+end
+
+
+frame2.OnClose = function()
     hook.Remove("CalcView", "ChangeFOV")
     fovSliderIsValid = false
+    AimShitCheckbox:SetValue(false)
     DetectPropFlingCheckbox:SetValue(false)
     espCheckbox:SetValue(false)
     spinCheckbox:SetValue(false)
@@ -803,6 +976,8 @@ frame.OnClose = function()
     propEspEnabled = false
 end
 
+ToggleGUI()
+ToggleGUI2()
 
 hook.Add(
     "Think",
@@ -812,6 +987,7 @@ hook.Add(
             local currentTime = RealTime() * 1000 
             if currentTime - lastHomePressTime >= homePressDelay then
                 ToggleGUI()
+                ToggleGUI2()
                 lastHomePressTime = currentTime
             end
         else
