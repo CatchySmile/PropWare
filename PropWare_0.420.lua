@@ -29,7 +29,7 @@ darkenPanel:SetVisible(false)
 
 local frame = vgui.Create("DFrame")
 frame:SetSize(400, 200)
-frame:SetTitle("PropWare - v0.43 Pre release")
+frame:SetTitle("PropWare - v0.420 Pre release")
 frame:SetVisible(true)
 frame:Center()
 frame:ShowCloseButton(false)
@@ -43,7 +43,7 @@ end
 
 local frame2 = vgui.Create("DFrame")
 frame2:SetSize(300, 110)
-frame2:SetTitle("PropWare - v0.43 Pre release")
+frame2:SetTitle("PropWare - v0.420 Pre release")
 frame2:SetVisible(true)
 frame2:Center()
 frame2:ShowCloseButton(false)
