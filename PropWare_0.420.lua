@@ -75,7 +75,7 @@ end)
 local labelModel = vgui.Create("DLabel", frame)
 labelModel:SetPos(327, 180)
 labelModel:SetSize(200, 20)
-labelModel:SetText("Made by 4koy")
+labelModel:SetText("Made by CatchySmile")
 labelModel:SetTextColor(Color(255, 255, 255))
 
 
