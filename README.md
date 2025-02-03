@@ -2,7 +2,7 @@
 [Works on 32bit and 64bit gmod!]
 
 - Preview : [https://i.ibb.co/TTrCZSh/image.png](https://i.ibb.co/TTrCZSh/image.png)
-- Discord : [https://discord.gg/YS2FeWvQ5r](https://discord.gg/YS2FeWvQ5r)
+- Discord : [https://discord.gg/YS2FeWvQ5ra](https://discord.gg/YS2FeWvQ5ra)
 ## Notice
 I am going to likely NOT goingg to add more features.
 You can skid my shit code idc :)
